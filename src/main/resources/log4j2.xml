@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration>
+    <Properties>
+        <Property name="appPackage">com</Property>
+    </Properties>
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{%ISO8601} %highlight{${LOG_LEVEL_PATTERN:-%2p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{%-16.16X{X-REQUEST-ID}}{magenta} [%10.15t] %style{%-40.40C{2.}}{cyan} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="CONSOLE" level="error"/>
+        </Root>
+
+        <Logger name="org.springframework">
+            <AppenderRef ref="CONSOLE" level="info"/>
+        </Logger>
+
+        <Logger name="${appPackage}">
+            <AppenderRef ref="CONSOLE" level="info"/>
+        </Logger>
+    </Loggers>
+</Configuration>
